@@ -1,0 +1,20 @@
+name: Documentation update
+description: Suggest a public documentation improvement.
+title: "docs: "
+labels:
+  - documentation
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What should be updated?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Add links or examples that help explain the request.
+    validations:
+      required: false

@@ -1,0 +1,29 @@
+name: Commitlint
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
+permissions:
+  pull-requests: read
+
+jobs:
+  pull-request-title:
+    name: Pull request title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! "${PR_TITLE}" =~ ^(docs|chore|fix|feat|security)(\([a-z0-9._-]+\))?:[[:space:]].+ ]]; then
+            echo "Pull request title should follow: type(scope): summary"
+            echo "Allowed types: docs, chore, fix, feat, security"
+            exit 1
+          fi

@@ -1,0 +1,5 @@
+# Keep cleanup diffs concise for removed repository housekeeping files.
+*.toml -diff
+*ignore -diff
+.github/**/*.sh -diff
+.github/labeler.yml -diff
